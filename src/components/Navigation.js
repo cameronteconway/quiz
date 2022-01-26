@@ -1,0 +1,110 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+// Actions
+import { resetGeography } from '../actions/geographyActions';
+import { resetCapital } from '../actions/capitalActions';
+
+// Helper
+import { shuffle } from '../util/helper';
+
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+import styles from '../styles/Navigation.module.css';
+
+const PrimaryNavigation = () => {
+    const [click, setClick] = useState(false);
+    const [shuffledColours, setShuffledColours] = useState([]);
+    const hamburgerRef = useRef(null);
+
+    const dispatch = useDispatch();
+
+    const handleClick = e => {
+        setClick(!click);
+        e.currentTarget.classList.toggle(styles['is-active']);
+    };
+
+    const closeMobileMenu = () => {
+        if (click) {
+            setClick(!click);
+            hamburgerRef.current.classList.toggle(styles['is-active']);
+        }
+    };
+
+    const resetQuestionStates = e => {
+        if (
+            e.target.innerHTML === 'World Capitals' &&
+            window.location.pathname === '/world-capitals'
+        ) {
+            dispatch(resetGeography());
+        } else if (
+            e.target.innerHTML === 'Geography' &&
+            window.location.pathname === '/geography'
+        ) {
+            dispatch(resetCapital());
+        } else {
+            dispatch(resetGeography());
+            dispatch(resetCapital());
+        }
+    };
+
+    // Call two functions on click, to close mobile menu and to reset questions
+    const navClick = e => {
+        closeMobileMenu();
+        resetQuestionStates(e);
+    };
+
+    useEffect(() => {
+        const colours = ['#437F97', '#849324', '#FFB30F', '#FD151B'];
+        setShuffledColours(shuffle(colours));
+    }, []);
+
+    return (
+        <header className={styles.header}>
+            <Link
+                to='/'
+                title='Go to the homepage'
+                className={styles.homeLink}
+                onClick={navClick}
+            >
+                <span>
+                    <span style={{ color: shuffledColours[0] }}>Q</span>
+                    <span style={{ color: shuffledColours[1] }}>u</span>
+                    <span style={{ color: shuffledColours[2] }}>i</span>
+                    <span style={{ color: shuffledColours[3] }}>z</span>
+                </span>
+            </Link>
+            <button
+                className={styles.hamburger}
+                ref={hamburgerRef}
+                onClick={e => handleClick(e)}
+            >
+                <span className={styles.line}></span>
+                <span className={styles.line}></span>
+                <span className={styles.line}></span>
+            </button>
+            <nav className={click ? styles.active : null}>
+                <ul className={styles.navLinkList}>
+                    <li>
+                        <Link to='/world-capitals' onClick={e => navClick(e)}>
+                            World Capitals
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/geography' onClick={e => navClick(e)}>
+                            Geography
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/about' onClick={e => navClick(e)}>
+                            About
+                        </Link>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    );
+};
+
+export default PrimaryNavigation;

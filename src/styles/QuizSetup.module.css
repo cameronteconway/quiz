@@ -1,0 +1,48 @@
+.quizSetupGeog,
+.quizSetupCapitals {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    font-family: 'Merriweather', serif;
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid var(--primary);
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 7px;
+}
+.dropdown:hover {
+    border: 2px solid var(--yellow);
+    outline: none;
+    cursor: pointer;
+}
+.dropdown:focus {
+    outline: none;
+    cursor: pointer;
+}
+.dropdown::-ms-expand {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .quizSetupGeog {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 40px;
+    }
+    .quizSetupCapitals {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 40px;
+    }
+}

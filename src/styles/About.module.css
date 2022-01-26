@@ -1,0 +1,45 @@
+.aboutContainer {
+    padding-bottom: 2.5rem;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detail {
+    display: block;
+    font-weight: 300;
+}
+.portfolio {
+    color: var(--text);
+    text-decoration: none;
+    position: relative;
+    text-decoration: underline;
+}
+.portfolio::before {
+    content: '';
+    display: block;
+    height: 20px;
+    background: #ce1483;
+    opacity: 0.2;
+    position: absolute;
+    bottom: 0px;
+    left: -2px;
+    right: -2px;
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform ease-in-out 400ms;
+}
+.portfolio:hover::before {
+    transform: scale(1, 1);
+}
+.portfolio:hover,
+.portfolio:focus {
+    color: var(--text);
+    text-decoration: none;
+}
+
+@media (min-width: 992px) {
+    .aboutContainer {
+        padding-bottom: 5rem;
+    }
+}

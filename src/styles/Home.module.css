@@ -1,0 +1,20 @@
+.homeContainer {
+    padding-bottom: 2.5rem;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.homeContainer h1 {
+    font-size: 1.5rem;
+}
+.detail {
+    display: block;
+    font-weight: 300;
+}
+
+@media (min-width: 992px) {
+    .homeContainer {
+        padding-bottom: 5rem;
+    }
+}

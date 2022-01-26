@@ -31,6 +31,7 @@ main button {
     border-radius: 4px;
     font-family: 'Merriweather', serif;
     width: 100%;
+    color: var(--text);
 }
 main button:hover {
     border: 2px solid var(--yellow);

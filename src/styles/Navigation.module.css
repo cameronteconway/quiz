@@ -111,6 +111,9 @@
         display: flex;
         border: none;
     }
+    .navLinkList li:first-of-type {
+        display: none;
+    }
     .navLinkList li {
         margin-top: 0;
         margin-bottom: 0;

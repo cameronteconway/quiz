@@ -30,26 +30,32 @@ const QuizSetup = () => {
 
     return (
         <div className={styles.quizSetupGeog}>
-            <select
-                className={styles.dropdown}
-                id='questionsAmountGeography'
-                value={questionAmount}
-                onChange={handleAmountChange}
-            >
-                <option value='10'>10</option>
-                <option value='20'>20</option>
-            </select>
+            <div>
+                <label className={styles.label}>Amount of Questions</label>
+                <select
+                    className={styles.dropdown}
+                    id='questionsAmountGeography'
+                    value={questionAmount}
+                    onChange={handleAmountChange}
+                >
+                    <option value='10'>10</option>
+                    <option value='20'>20</option>
+                </select>
+            </div>
 
-            <select
-                className={styles.dropdown}
-                id='difficulty'
-                value={questionDifficulty}
-                onChange={handleDifficultyChange}
-            >
-                <option value='easy'>Easy</option>
-                <option value='medium'>Medium</option>
-                <option value='hard'>Hard</option>
-            </select>
+            <div>
+                <label className={styles.label}>Difficulty</label>
+                <select
+                    className={styles.dropdown}
+                    id='difficulty'
+                    value={questionDifficulty}
+                    onChange={handleDifficultyChange}
+                >
+                    <option value='easy'>Easy</option>
+                    <option value='medium'>Medium</option>
+                    <option value='hard'>Hard</option>
+                </select>
+            </div>
 
             <StartGame text='Start Quiz' />
         </div>

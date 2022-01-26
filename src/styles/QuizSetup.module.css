@@ -37,13 +37,23 @@
     display: none;
 }
 
+.label {
+    /* border: 1px solid red; */
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
 @media (min-width: 992px) {
     .quizSetupGeog {
-        grid-template-columns: repeat(3, 1fr);
-        padding: 0 40px;
+        /* grid-template-columns: repeat(3, 1fr);
+        padding: 0 40px; */
+        max-width: 600px;
+        margin: 0 auto;
     }
     .quizSetupCapitals {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0 40px;
+        /* grid-template-columns: repeat(2, 1fr); */
+        max-width: 600px;
+        margin: 0 auto;
     }
 }

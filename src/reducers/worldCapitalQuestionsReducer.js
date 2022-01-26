@@ -1,6 +1,6 @@
 const initialState = {
     loading: true,
-    amount_of_questions: '10',
+    amount_of_questions: '',
     questions: [],
     questionIndex: 0,
     score: 0,

@@ -21,15 +21,18 @@ const QuizSetup = () => {
 
     return (
         <div className={styles.quizSetupCapitals}>
-            <select
-                className={styles.dropdown}
-                id='questionsAmountCapitals'
-                value={questionAmount}
-                onChange={handleAmountChange}
-            >
-                <option value='10'>10</option>
-                <option value='20'>20</option>
-            </select>
+            <div>
+                <label className={styles.label}>Amount of Questions</label>
+                <select
+                    className={styles.dropdown}
+                    id='questionsAmountCapitals'
+                    value={questionAmount}
+                    onChange={handleAmountChange}
+                >
+                    <option value='10'>10</option>
+                    <option value='20'>20</option>
+                </select>
+            </div>
 
             <StartGame text='Start Quiz' />
         </div>

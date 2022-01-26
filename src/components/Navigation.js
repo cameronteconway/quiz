@@ -87,17 +87,38 @@ const PrimaryNavigation = () => {
             <nav className={click ? styles.active : null}>
                 <ul className={styles.navLinkList}>
                     <li>
-                        <Link to='/world-capitals' onClick={e => navClick(e)}>
+                        <Link
+                            to='/'
+                            onClick={navClick}
+                            title='Go to the homepage'
+                        >
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to='/world-capitals'
+                            onClick={e => navClick(e)}
+                            title='Go to world capitals quiz'
+                        >
                             World Capitals
                         </Link>
                     </li>
                     <li>
-                        <Link to='/geography' onClick={e => navClick(e)}>
+                        <Link
+                            to='/geography'
+                            onClick={e => navClick(e)}
+                            title='Go to geography quiz'
+                        >
                             Geography
                         </Link>
                     </li>
                     <li>
-                        <Link to='/about' onClick={e => navClick(e)}>
+                        <Link
+                            to='/about'
+                            onClick={e => navClick(e)}
+                            title='Go to about'
+                        >
                             About
                         </Link>
                     </li>

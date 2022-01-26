@@ -31,7 +31,6 @@ main button {
     border-radius: 4px;
     font-family: 'Merriweather', serif;
     width: 100%;
-    color: var(--text);
 }
 main button:hover {
     border: 2px solid var(--yellow);
@@ -57,7 +56,7 @@ button.selected:not(correct) {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 2.5rem;
+    /* padding-bottom: 2.5rem; */
 }
 .quiz-container > div {
     width: 100%;

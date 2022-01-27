@@ -113,15 +113,6 @@ const PrimaryNavigation = () => {
                             Geography
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            to='/about'
-                            onClick={e => navClick(e)}
-                            title='Go to about'
-                        >
-                            About
-                        </Link>
-                    </li>
                 </ul>
             </nav>
         </header>

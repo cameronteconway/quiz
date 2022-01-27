@@ -6,7 +6,6 @@ import Layout from './Layout';
 import Navigation from './Navigation';
 import Home from '../pages/Home';
 import WorldCapitals from '../pages/WorldCapitals';
-import About from '../pages/About';
 import Geography from '../pages/Geography';
 import NotFound from './NotFound';
 
@@ -21,7 +20,6 @@ const App = () => {
                     <Route exact path='/' element={<Home />} />
                     <Route path='world-capitals' element={<WorldCapitals />} />
                     <Route path='geography' element={<Geography />} />
-                    <Route path='about' element={<About />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </Layout>

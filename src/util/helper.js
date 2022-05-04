@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 // Get a random integer up to max number
 export const getRandomInt = max => {
     return Math.floor(Math.random() * Math.floor(max));
@@ -24,8 +26,30 @@ export const shuffle = array => {
     return array;
 };
 
-export const decodeHTML = function (html) {
+// Decode HTML
+export const decodeHTML = html => {
     const txt = document.createElement('textarea');
     txt.innerHTML = html;
     return txt.value;
+};
+
+// Get width of window
+const getWindowWidth = () => {
+    const { innerWidth: width } = window;
+    return { width };
+};
+
+export const useWindowWidth = () => {
+    const [windowWidth, setWindowWidth] = useState(getWindowWidth());
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowWidth(getWindowWidth());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return windowWidth;
 };

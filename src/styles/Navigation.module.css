@@ -48,6 +48,9 @@
     margin-bottom: 2em;
     margin-top: 2em;
 }
+.navLinkList li:first-of-type {
+    margin-top: 0;
+}
 .navLinkList li a {
     font-size: 22px;
     color: var(--text);

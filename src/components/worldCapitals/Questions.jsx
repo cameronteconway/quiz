@@ -2,45 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Actions
-import { setScore } from '../../actions/geographyActions';
-import { setIndex } from '../../actions/geographyActions';
+import { setScore } from '../../actions/capitalActions';
+import { setIndex } from '../../actions/capitalActions';
 
-import LoadingWheel from '../../components/LoadingWheel';
+import LoadingWheel from '../LoadingWheel';
 
 // Helper
 import { getRandomInt } from '../../util/helper';
-import { decodeHTML } from '../../util/helper';
 
 import styles from '../../styles/Questions.module.css';
 
 const Questions = () => {
-    const [questions, setQuestions] = useState([]);
     const [answerSelected, setAnswerSelected] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [options, setOptions] = useState([]);
 
     const { questionIndex, score } = useSelector(
-        state => state.geographyQuestionsData
+        (state) => state.worldCapitalQuestionsData
     );
-    const encodedQuestions = useSelector(
-        state => state.geographyQuestionsData.questions
+    const questions = useSelector(
+        (state) => state.worldCapitalQuestionsData.questions
     );
     const loading = useSelector(
-        state => state.geographyQuestionsData.options.loading
+        (state) => state.worldCapitalQuestionsData.loading
     );
-
-    useEffect(() => {
-        const decodedQuestions = encodedQuestions.map(q => {
-            return {
-                ...q,
-                question: decodeHTML(q.question),
-                correct_answer: decodeHTML(q.correct_answer),
-                incorrect_answers: q.incorrect_answers.map(a => decodeHTML(a)),
-            };
-        });
-
-        setQuestions(decodedQuestions);
-    }, [encodedQuestions]);
 
     const dispatch = useDispatch();
 
@@ -63,7 +48,7 @@ const Questions = () => {
         setOptions(answers);
     }, [question]);
 
-    const handleListItemClick = event => {
+    const handleListItemClick = (event) => {
         setAnswerSelected(true);
         setSelectedAnswer(event.target.innerText);
 
@@ -81,7 +66,7 @@ const Questions = () => {
         }
     };
 
-    const getClass = option => {
+    const getClass = (option) => {
         if (!answerSelected) {
             return ``;
         }
@@ -101,23 +86,23 @@ const Questions = () => {
                 <LoadingWheel />
             ) : (
                 <>
-                    <h2 className={styles.question}>
-                        {question && question.question}
-                    </h2>
-                    <div className={styles.questionButtons}>
-                        {options.map((option, i) => (
-                            <button
-                                key={i}
-                                onClick={handleListItemClick}
-                                className={getClass(option)}
-                            >
-                                {option}
-                            </button>
-                        ))}
+                    <div>
+                        <h2 className={styles.question}>{question.question}</h2>
+                        <div className={styles.questionButtons}>
+                            {options.map((option, i) => (
+                                <button
+                                    key={i}
+                                    onClick={handleListItemClick}
+                                    className={getClass(option)}
+                                >
+                                    {option}
+                                </button>
+                            ))}
+                        </div>
+                        <span className={styles.score}>
+                            Score: {score}/{questions.length}
+                        </span>
                     </div>
-                    <span className={styles.score}>
-                        Score: {score}/{question && questions.length}
-                    </span>
                 </>
             )}
         </>

@@ -8,7 +8,7 @@ import FinalScreen from '../components/geography/FinalScreen';
 
 const Geography = () => {
     const { questions, questionIndex } = useSelector(
-        state => state.geographyQuestionsData
+        (state) => state.geographyQuestionsData
     );
 
     let component;
@@ -17,13 +17,13 @@ const Geography = () => {
         component = <Questions />;
     } else if (!questions.length) {
         component = (
-            <>
+            <div>
                 <Intro
                     title={'Geography Quiz'}
                     details={'Test your general geographic knowledge'}
                 />
                 <QuizSetup />
-            </>
+            </div>
         );
     } else {
         component = <FinalScreen />;

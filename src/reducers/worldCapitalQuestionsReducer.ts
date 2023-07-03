@@ -1,4 +1,4 @@
-const initialState = {
+const initialState: Questions = {
     loading: true,
     amount_of_questions: '',
     questions: [],
@@ -6,7 +6,29 @@ const initialState = {
     score: 0,
 };
 
-const worldCapitalQuestionsReducer = (state = initialState, action) => {
+interface Question {
+    correct_answer: string;
+    incorrect_answers: string[];
+    question: string;
+}
+
+interface Questions {
+    loading: boolean;
+    amount_of_questions: string;
+    questions: Question[];
+    questionIndex: number;
+    score: number;
+}
+
+interface ReducerAction {
+    type: string;
+    payload?: Questions;
+}
+
+const worldCapitalQuestionsReducer = (
+    state = initialState,
+    action: ReducerAction
+): Questions | any => {
     switch (action.type) {
         case 'CHANGE_WORLDCAPITAL_LOADING':
             return {

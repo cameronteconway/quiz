@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 // Actions
 import { setScore } from '../../actions/geographyActions';
@@ -13,24 +13,33 @@ import { decodeHTML } from '../../util/helper';
 
 import styles from '../../styles/Questions.module.css';
 
+interface Question {
+    category: string;
+    correct_answer: string;
+    difficulty: string;
+    incorrect_answers: string[];
+    question: string;
+    type: string;
+}
+
 const Questions = () => {
-    const [questions, setQuestions] = useState([]);
-    const [answerSelected, setAnswerSelected] = useState(false);
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [options, setOptions] = useState([]);
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [answerSelected, setAnswerSelected] = useState<boolean>(false);
+    const [selectedAnswer, setSelectedAnswer] = useState<string>('');
+    const [options, setOptions] = useState<string[]>([]);
 
     const { questionIndex, score } = useSelector(
-        (state) => state.geographyQuestionsData
+        (state: RootStateOrAny) => state.geographyQuestionsData
     );
     const encodedQuestions = useSelector(
-        (state) => state.geographyQuestionsData.questions
+        (state: RootStateOrAny) => state.geographyQuestionsData.questions
     );
     const loading = useSelector(
-        (state) => state.geographyQuestionsData.options.loading
+        (state: RootStateOrAny) => state.geographyQuestionsData.options.loading
     );
 
     useEffect(() => {
-        const decodedQuestions = encodedQuestions.map((q) => {
+        const decodedQuestions = encodedQuestions.map((q: Question) => {
             return {
                 ...q,
                 question: decodeHTML(q.question),
@@ -65,11 +74,12 @@ const Questions = () => {
         setOptions(answers);
     }, [question]);
 
-    const handleListItemClick = (event) => {
+    const handleListItemClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const target: HTMLElement = e.target as HTMLElement;
         setAnswerSelected(true);
-        setSelectedAnswer(event.target.innerText);
+        setSelectedAnswer(target.innerText);
 
-        if (event.target.textContent === answer) {
+        if (target.textContent === answer) {
             dispatch(setScore(score + 1));
         }
 
@@ -77,13 +87,13 @@ const Questions = () => {
         if (questionIndex + 1 <= questions.length) {
             setTimeout(() => {
                 setAnswerSelected(false);
-                setSelectedAnswer(null);
+                setSelectedAnswer('');
                 dispatch(setIndex(questionIndex + 1));
             }, 1500);
         }
     };
 
-    const getClass = (option) => {
+    const getClass = (option: string) => {
         if (!answerSelected) {
             return ``;
         }

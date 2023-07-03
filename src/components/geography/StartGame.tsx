@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import axios from 'axios';
 
 // Actions
@@ -8,15 +7,21 @@ import { setQuestions } from '../../actions/geographyActions';
 import { setIndex } from '../../actions/geographyActions';
 import { setScore } from '../../actions/geographyActions';
 
-const StartGame = ({ text }) => {
+interface Props {
+    text: string;
+}
+
+const StartGame = ({ text }: Props) => {
     const questionDifficulty = useSelector(
-        state => state.geographyQuestionsData.options.question_difficulty
+        (state: RootStateOrAny) =>
+            state.geographyQuestionsData.options.question_difficulty
     );
     const questionAmount = useSelector(
-        state => state.geographyQuestionsData.options.amount_of_questions
+        (state: RootStateOrAny) =>
+            state.geographyQuestionsData.options.amount_of_questions
     );
     const questionIndex = useSelector(
-        state => state.geographyQuestionsData.questionIndex
+        (state: RootStateOrAny) => state.geographyQuestionsData.questionIndex
     );
 
     const dispatch = useDispatch();

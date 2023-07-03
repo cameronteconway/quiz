@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -15,12 +15,13 @@ import styles from '../styles/Navigation.module.css';
 
 const PrimaryNavigation = () => {
     const [click, setClick] = useState(false);
-    const [shuffledColours, setShuffledColours] = useState([]);
-    const hamburgerRef = useRef(null);
+    const [shuffledColours, setShuffledColours] = useState<string[]>([]);
+    const hamburgerRef: React.RefObject<HTMLButtonElement> =
+        useRef<HTMLButtonElement>(null);
 
     const dispatch = useDispatch();
 
-    const handleClick = e => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         setClick(!click);
         e.currentTarget.classList.toggle(styles['is-active']);
     };
@@ -28,18 +29,19 @@ const PrimaryNavigation = () => {
     const closeMobileMenu = () => {
         if (click) {
             setClick(!click);
-            hamburgerRef.current.classList.toggle(styles['is-active']);
+            hamburgerRef.current?.classList.toggle(styles['is-active']);
         }
     };
 
-    const resetQuestionStates = e => {
+    const resetQuestionStates = (e: React.MouseEvent<HTMLElement>) => {
+        const target: HTMLElement = e.target as HTMLElement;
         if (
-            e.target.innerHTML === 'World Capitals' &&
+            target.innerHTML === 'World Capitals' &&
             window.location.pathname === '/world-capitals'
         ) {
             dispatch(resetGeography());
         } else if (
-            e.target.innerHTML === 'Geography' &&
+            target.innerHTML === 'Geography' &&
             window.location.pathname === '/geography'
         ) {
             dispatch(resetCapital());
@@ -50,7 +52,7 @@ const PrimaryNavigation = () => {
     };
 
     // Call two functions on click, to close mobile menu and to reset questions
-    const navClick = e => {
+    const navClick = (e: React.MouseEvent<HTMLElement>) => {
         closeMobileMenu();
         resetQuestionStates(e);
     };
@@ -78,7 +80,7 @@ const PrimaryNavigation = () => {
             <button
                 className={styles.hamburger}
                 ref={hamburgerRef}
-                onClick={e => handleClick(e)}
+                onClick={(e) => handleClick(e)}
             >
                 <span className={styles.line}></span>
                 <span className={styles.line}></span>
@@ -98,7 +100,7 @@ const PrimaryNavigation = () => {
                     <li>
                         <Link
                             to='/world-capitals'
-                            onClick={e => navClick(e)}
+                            onClick={(e) => navClick(e)}
                             title='Go to world capitals quiz'
                         >
                             World Capitals
@@ -107,7 +109,7 @@ const PrimaryNavigation = () => {
                     <li>
                         <Link
                             to='/geography'
-                            onClick={e => navClick(e)}
+                            onClick={(e) => navClick(e)}
                             title='Go to geography quiz'
                         >
                             Geography

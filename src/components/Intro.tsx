@@ -1,8 +1,11 @@
-import React from 'react';
-
 import styles from '../styles/Intro.module.css';
 
-const Intro = ({ title, details }) => {
+interface Props {
+    title: string;
+    details: string;
+}
+
+const Intro = ({ title, details }: Props) => {
     return (
         <section className={styles.intro}>
             <h1>{title}</h1>

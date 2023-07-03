@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 // Actions
 import { setScore } from '../../actions/capitalActions';
@@ -13,18 +13,18 @@ import { getRandomInt } from '../../util/helper';
 import styles from '../../styles/Questions.module.css';
 
 const Questions = () => {
-    const [answerSelected, setAnswerSelected] = useState(false);
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [options, setOptions] = useState([]);
+    const [answerSelected, setAnswerSelected] = useState<boolean>(false);
+    const [selectedAnswer, setSelectedAnswer] = useState<string>('');
+    const [options, setOptions] = useState<string[]>([]);
 
     const { questionIndex, score } = useSelector(
-        (state) => state.worldCapitalQuestionsData
+        (state: RootStateOrAny) => state.worldCapitalQuestionsData
     );
     const questions = useSelector(
-        (state) => state.worldCapitalQuestionsData.questions
+        (state: RootStateOrAny) => state.worldCapitalQuestionsData.questions
     );
     const loading = useSelector(
-        (state) => state.worldCapitalQuestionsData.loading
+        (state: RootStateOrAny) => state.worldCapitalQuestionsData.loading
     );
 
     const dispatch = useDispatch();
@@ -48,11 +48,12 @@ const Questions = () => {
         setOptions(answers);
     }, [question]);
 
-    const handleListItemClick = (event) => {
+    const handleListItemClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const target: HTMLElement = e.target as HTMLElement;
         setAnswerSelected(true);
-        setSelectedAnswer(event.target.innerText);
+        setSelectedAnswer(target.innerText);
 
-        if (event.target.textContent === answer) {
+        if (target.textContent === answer) {
             dispatch(setScore(score + 1));
         }
 
@@ -60,13 +61,13 @@ const Questions = () => {
         if (questionIndex + 1 <= questions.length) {
             setTimeout(() => {
                 setAnswerSelected(false);
-                setSelectedAnswer(null);
+                setSelectedAnswer('');
                 dispatch(setIndex(questionIndex + 1));
             }, 1500);
         }
     };
 
-    const getClass = (option) => {
+    const getClass = (option: string) => {
         if (!answerSelected) {
             return ``;
         }

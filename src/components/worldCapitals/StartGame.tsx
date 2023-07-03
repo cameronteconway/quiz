@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import axios from 'axios';
 
 import { changeLoading } from '../../actions/capitalActions';
@@ -10,9 +9,26 @@ import { setScore } from '../../actions/capitalActions';
 // Helper
 import { shuffle } from '../../util/helper';
 
-const StartGame = ({ text }) => {
+interface Props {
+    text: string;
+}
+
+interface Country {
+    capital: string;
+    iso2: string;
+    iso3: string;
+    name: string;
+}
+
+interface Question {
+    correct_answer: string;
+    incorrect_answers: string[];
+    question: string;
+}
+
+const StartGame = ({ text }: Props) => {
     const { questionIndex, amount_of_questions } = useSelector(
-        state => state.worldCapitalQuestionsData
+        (state: RootStateOrAny) => state.worldCapitalQuestionsData
     );
 
     const dispatch = useDispatch();
@@ -21,18 +37,23 @@ const StartGame = ({ text }) => {
         const data = await axios.get(
             'https://countriesnow.space/api/v0.1/countries/capital'
         );
-        const allCountries = data.data.data;
+        const allCountries: Country[] = data.data.data;
+
         // Filter out all countries that don't have a capital e.g. Antartica
-        let filteredCountries = allCountries.filter(obj => obj.capital !== '');
+        let filteredCountries: Country[] = allCountries.filter(
+            (obj: Country) => obj.capital !== ''
+        );
+
+        console.log(filteredCountries);
 
         // Shuffle and then slice array depending on how many questions the user would like to answer ('amount_of_questions')
-        let shuffledCountries = [];
+        let shuffledCountries: Country[] = [];
         if (amount_of_questions === '10') {
             shuffledCountries = shuffle(filteredCountries).slice(0, 40);
         } else {
             shuffledCountries = shuffle(filteredCountries).slice(0, 80);
         }
-        let groupedCountries = [];
+        let groupedCountries: Country[][] = [];
         for (let i = 0; i < shuffledCountries.length; i += 4) {
             groupedCountries.push(shuffledCountries.slice(i, i + 4));
         }
@@ -40,7 +61,11 @@ const StartGame = ({ text }) => {
         // Create new array of object with 'correct_answer', 'incorrect_answers' ([]), and 'question'
         let formattedQuestions = [];
         for (let i = 0; i < groupedCountries.length; i++) {
-            let questionObj = {};
+            let questionObj: Question = {
+                question: '',
+                correct_answer: '',
+                incorrect_answers: [],
+            };
 
             questionObj.question = `What is the capital of ${groupedCountries[i][0].name}`;
             questionObj.correct_answer = groupedCountries[i][0].capital;

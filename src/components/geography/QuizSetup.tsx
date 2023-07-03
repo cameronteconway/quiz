@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 // Actions
 import { changeDifficulty } from '../../actions/geographyActions';
@@ -11,21 +10,25 @@ import styles from '../../styles/QuizSetup.module.css';
 
 const QuizSetup = () => {
     const questionDifficulty = useSelector(
-        state => state.geographyQuestionsData.options.question_difficulty
+        (state: RootStateOrAny) =>
+            state.geographyQuestionsData.options.question_difficulty
     );
     const questionAmount = useSelector(
-        state => state.geographyQuestionsData.options.amount_of_questions
+        (state: RootStateOrAny) =>
+            state.geographyQuestionsData.options.amount_of_questions
     );
 
     const dispatch = useDispatch();
 
     // Handle changes in setup
-    const handleDifficultyChange = event => {
-        dispatch(changeDifficulty(event.target.value));
+    const handleDifficultyChange = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        dispatch(changeDifficulty(e.target.value));
     };
 
-    const handleAmountChange = event => {
-        dispatch(changeAmount(event.target.value));
+    const handleAmountChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(changeAmount(e.target.value));
     };
 
     return (

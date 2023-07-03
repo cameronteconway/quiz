@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 import { changeAmount } from '../../actions/capitalActions';
 
@@ -9,14 +8,15 @@ import styles from '../../styles/QuizSetup.module.css';
 
 const QuizSetup = () => {
     const questionAmount = useSelector(
-        state => state.worldCapitalQuestionsData.amount_of_questions
+        (state: RootStateOrAny) =>
+            state.worldCapitalQuestionsData.amount_of_questions
     );
 
     const dispatch = useDispatch();
 
     // Handle changes in setup
-    const handleAmountChange = event => {
-        dispatch(changeAmount(event.target.value));
+    const handleAmountChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(changeAmount(e.target.value));
     };
 
     return (

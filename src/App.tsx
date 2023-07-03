@@ -1,15 +1,14 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Layout from './Layout';
+import Layout from './components/Layout';
 
-import Navigation from './Navigation';
-import Home from '../pages/Home';
-import WorldCapitals from '../pages/WorldCapitals';
-import Geography from '../pages/Geography';
-import NotFound from './NotFound';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import WorldCapitals from './pages/WorldCapitals';
+import Geography from './pages/Geography';
+import NotFound from './components/NotFound';
 
-import '../styles/global.css';
+import './styles/global.css';
 
 const App = () => {
     return (
@@ -17,7 +16,7 @@ const App = () => {
             <Navigation />
             <Layout>
                 <Routes>
-                    <Route exact path='/' element={<Home />} />
+                    <Route path='/' element={<Home />} />
                     <Route path='world-capitals' element={<WorldCapitals />} />
                     <Route path='geography' element={<Geography />} />
                     <Route path='*' element={<NotFound />} />

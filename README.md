@@ -4,7 +4,7 @@ This aim of this project is to demonstrate and expand upon my understanding of R
 
 ## Technologies
 
-This project is built using the frontend JavaScript library [React](https://reactjs.org/) with [Redux](https://redux.js.org/) to manage state.
+This project is built using the frontend JavaScript library [React](https://reactjs.org/) along with TypeScript and [Redux](https://redux.js.org/) to manage state. The styling is dealt with using CSS modules.
 
 ## APIs
 

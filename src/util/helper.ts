@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
 // Get a random integer up to max number
-export const getRandomInt = max => {
+export const getRandomInt = (max: number): number => {
     return Math.floor(Math.random() * Math.floor(max));
 };
 
 // Shuffle Array
-export const shuffle = array => {
+export const shuffle = (array: any[]): any[] => {
     let currentIndex = array.length,
         randomIndex;
 
@@ -27,8 +27,8 @@ export const shuffle = array => {
 };
 
 // Decode HTML
-export const decodeHTML = html => {
-    const txt = document.createElement('textarea');
+export const decodeHTML = (html: string) => {
+    const txt: HTMLTextAreaElement = document.createElement('textarea');
     txt.innerHTML = html;
     return txt.value;
 };

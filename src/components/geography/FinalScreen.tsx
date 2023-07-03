@@ -1,16 +1,15 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 import styles from '../../styles/FinalScreen.module.css';
 
 // Actions
-import { setQuestions } from '../../actions/capitalActions';
-import { setScore } from '../../actions/capitalActions';
-import { setIndex } from '../../actions/capitalActions';
+import { setQuestions } from '../../actions/geographyActions';
+import { setScore } from '../../actions/geographyActions';
+import { setIndex } from '../../actions/geographyActions';
 
 const FinalScreen = () => {
     const { questions, score } = useSelector(
-        state => state.worldCapitalQuestionsData
+        (state: RootStateOrAny) => state.geographyQuestionsData
     );
 
     const dispatch = useDispatch();

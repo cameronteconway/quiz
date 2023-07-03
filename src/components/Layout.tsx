@@ -1,8 +1,10 @@
-import React from 'react';
-
 import styles from '../styles/Layout.module.css';
 
-const Layout = ({ children }) => {
+interface Props {
+    children: JSX.Element;
+}
+
+const Layout = ({ children }: Props) => {
     return (
         <div className={styles.wrapper}>
             <main>{children}</main>

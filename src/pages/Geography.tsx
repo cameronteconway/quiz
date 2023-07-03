@@ -1,14 +1,13 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 import Intro from '../components/Intro';
-import Questions from '../components/worldCapitals/Questions';
-import QuizSetup from '../components/worldCapitals/QuizSetup';
-import FinalScreen from '../components/worldCapitals/FinalScreen';
+import QuizSetup from '../components/geography/QuizSetup';
+import Questions from '../components/geography/Questions';
+import FinalScreen from '../components/geography/FinalScreen';
 
-const WorldCapitals = () => {
+const Geography = () => {
     const { questions, questionIndex } = useSelector(
-        state => state.worldCapitalQuestionsData
+        (state: RootStateOrAny) => state.geographyQuestionsData
     );
 
     let component;
@@ -17,13 +16,13 @@ const WorldCapitals = () => {
         component = <Questions />;
     } else if (!questions.length) {
         component = (
-            <>
+            <div>
                 <Intro
-                    title={'World Capitals Quiz'}
-                    details={'How well do you know the capitals of the world?'}
+                    title={'Geography Quiz'}
+                    details={'Test your general geographic knowledge'}
                 />
                 <QuizSetup />
-            </>
+            </div>
         );
     } else {
         component = <FinalScreen />;
@@ -36,4 +35,4 @@ const WorldCapitals = () => {
     );
 };
 
-export default WorldCapitals;
+export default Geography;

@@ -38,7 +38,7 @@ const Questions = () => {
         if (!question) {
             return;
         }
-        let answers = [...question.incorrect_answers];
+        const answers = [...question.incorrect_answers];
         answers.splice(
             getRandomInt(question.incorrect_answers.length),
             0,

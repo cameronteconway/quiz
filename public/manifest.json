@@ -1,0 +1,37 @@
+{
+    "short_name": "quiz",
+    "name": "quiz | Cameron Conway",
+    "icons": [
+        {
+            "src": "/manifest-icon-192.maskable.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/manifest-icon-192.maskable.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/manifest-icon-512.maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/manifest-icon-512.maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "background_color": "#E7E5DF",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#E7E5DF",
+    "description": "Geography Quiz Web app"
+}

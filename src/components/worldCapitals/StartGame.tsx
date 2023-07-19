@@ -40,11 +40,9 @@ const StartGame = ({ text }: Props) => {
         const allCountries: Country[] = data.data.data;
 
         // Filter out all countries that don't have a capital e.g. Antartica
-        let filteredCountries: Country[] = allCountries.filter(
+        const filteredCountries: Country[] = allCountries.filter(
             (obj: Country) => obj.capital !== ''
         );
-
-        console.log(filteredCountries);
 
         // Shuffle and then slice array depending on how many questions the user would like to answer ('amount_of_questions')
         let shuffledCountries: Country[] = [];
@@ -53,15 +51,15 @@ const StartGame = ({ text }: Props) => {
         } else {
             shuffledCountries = shuffle(filteredCountries).slice(0, 80);
         }
-        let groupedCountries: Country[][] = [];
+        const groupedCountries: Country[][] = [];
         for (let i = 0; i < shuffledCountries.length; i += 4) {
             groupedCountries.push(shuffledCountries.slice(i, i + 4));
         }
 
         // Create new array of object with 'correct_answer', 'incorrect_answers' ([]), and 'question'
-        let formattedQuestions = [];
+        const formattedQuestions = [];
         for (let i = 0; i < groupedCountries.length; i++) {
-            let questionObj: Question = {
+            const questionObj: Question = {
                 question: '',
                 correct_answer: '',
                 incorrect_answers: [],

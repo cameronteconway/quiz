@@ -81,6 +81,8 @@ const PrimaryNavigation = () => {
                 className={styles.hamburger}
                 ref={hamburgerRef}
                 onClick={(e) => handleClick(e)}
+                type='button'
+                aria-label='Mobile navigation'
             >
                 <span className={styles.line}></span>
                 <span className={styles.line}></span>

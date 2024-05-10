@@ -7,7 +7,6 @@ import { setIndex } from '../../actions/capitalActions';
 
 import LoadingWheel from '../LoadingWheel';
 
-// Helper
 import { getRandomInt } from '../../util/helper';
 
 import styles from '../../styles/Questions.module.css';
